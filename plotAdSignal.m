@@ -1,30 +1,28 @@
-close all; clear; clc;
-
-%geting silgnals feom ADInstruments
-fs=100;
-[T, Resp, BPL, ECG] = get_AD_file;
+function plotAdSignal(signalStruct)
 
 figure; 
 subplot(311);
-plot(T, Resp);
+plot(signalStruct.time, signalStruct.resp);
 grid on;
 xlabel('Time[s]');
 ylabel('Amplitude {\mu}V');
-title('Respiration');
+title(['Respiration' signalStruct.fileName]);
 
 subplot(312);
-plot(T, BPL);
+plot(signalStruct.time, signalStruct.BP);
 grid on;
 xlabel('Time[s]');
 ylabel('Amplitude {\mu}V');
-title('Blood Pulse');
+title(['Blood Pulse' signalStruct.fileName]);
 
 subplot(313);
-plot(T, ECG);
+plot(signalStruct.time, signalStruct.ECG);
 grid on;
 xlabel('Time[s]');
 ylabel('Amplitude {\mu}V');
-title('Electrocardiogram');
+title(['Electrocardiogram' signalStruct.fileName]);
+
+end
 
 
 
