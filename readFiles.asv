@@ -1,0 +1,7 @@
+close all; clc; clear;
+filesDetails = dir('data/*.txt');
+fileNames = zeros(length(filesDetails), 1);
+
+for i = nomel(filesDetails)
+    fileNames[i] = filesDetails(i).name
+    emd
