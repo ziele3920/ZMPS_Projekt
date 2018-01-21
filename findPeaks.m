@@ -78,7 +78,7 @@ for i = 1:length(peaksVal)
 end
 
 if false
-    figure; 
+    figure;
     subplot(211); plot(time, lpFiltered);
     hold on; subplot(211); plot(time, signalForce, 'r');
     hold on; subplot(211); plot(time, thresholdedSignalForce, 'g');

@@ -17,18 +17,21 @@ for i = 1:numel(filesDetails)
         dataNB(length(dataNB)).resp = Resp;
         dataNB(length(dataNB)).BP = BP;
         dataNB(length(dataNB)).ECG = ECG;
+        dataNB(length(dataNB)).breathProc = 'NB';
     elseif strcmp(splitedFileName(groupIndicatorPos), '03')
         data03(length(data03)+1).fileName = currentFileName;
         data03(length(data03)).time = TS;
         data03(length(data03)).resp = Resp;
         data03(length(data03)).BP = BP;
         data03(length(data03)).ECG = ECG;
+        data03(length(data03)).breathProc = '03';
     elseif strcmp(splitedFileName(groupIndicatorPos), '05')
         data05(length(data05) + 1).fileName = currentFileName;
         data05(length(data05)).time = TS;
         data05(length(data05)).resp = Resp;
         data05(length(data05)).BP = BP;
         data05(length(data05)).ECG = ECG;
+        data05(length(data05)).breathProc = '05';
     end
 end
 end
