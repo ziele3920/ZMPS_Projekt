@@ -43,8 +43,8 @@ end
 signalForce=signalForce./max(abs(signalForce));
 
 thWindowSize = 200;
-thFrac = 0.32;
-freqCutoff = 180;
+thFrac = 0.25;
+freqCutoff = 150;
 timeDiffCutoff = 1/freqCutoff*60;
 thresholdedSignalForce = [signalForce; zeros(length(signalForce), 1)];
 for i = 1:thWindowSize:floor(length(signalForce)/thWindowSize)*thWindowSize+1
@@ -55,8 +55,8 @@ for i = 1:thWindowSize:floor(length(signalForce)/thWindowSize)*thWindowSize+1
 end
 thresholdedSignalForce = thresholdedSignalForce(1:length(signalForce));
 [peaksVal,peaksTime] = findpeaks(thresholdedSignalForce,time);
-normPeaksVal = peaksVal;
-normPeaksTime = peaksTime;
+normPeaksVal = [];
+normPeaksTime = [];
 
 for i = 1:length(peaksVal)
     centerTimeInd = peaksTime(i) * samplingFreq;
@@ -70,11 +70,11 @@ for i = 1:length(peaksVal)
     [~, maxInd] = max(lpFiltered(lowerBoundInd:upperBoundInd));
     maxInd = maxInd + lowerBoundInd - 1;
     maxInd = round(maxInd);
-    if i > 1 && time(maxInd - forceWindowSize/2) - normPeaksTime(i-1) < timeDiffCutoff
+    if i > 1 && time(maxInd - forceWindowSize/2) - normPeaksTime(length(normPeaksTime)) < timeDiffCutoff
         continue;
     end
-    normPeaksVal(i) = lpFiltered(maxInd);
-    normPeaksTime(i) = time(maxInd - forceWindowSize/2);
+    normPeaksVal(length(normPeaksVal)+1) = lpFiltered(maxInd);
+    normPeaksTime(length(normPeaksTime) +  1) = time(maxInd - forceWindowSize/2);
 end
 
 if false
